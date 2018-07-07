@@ -4,17 +4,12 @@ module.exports = {
   messages: {
     get: function () {}, // a function which produces all the messages
     post: function (message) {
-      db.connection.connect(function(err) {
-        if (err) {
-          throw err;
-          console.log('error');
-        } 
-        db.connection.query ('INSERT INTO messages VALUES (\'thu\', \'lobby\', \'hello\')', (err, results) => {
-          if (err) { throw err; }
-          console.log('HELOOOOOO');
-        });
+
+      db.connection.query ('INSERT INTO messages (`username`, `roomname`, `text`) VALUES (\'' + message.username + '\',\'' + message.roomname + '\', \'' + message.text + '\');', (err, results) => {
+        if (err) { throw err; }
+        console.log('results:' + results);
+        done();
       });
-      
       
       db.connection.end();
     } // a function which can be used to insert a message into the database

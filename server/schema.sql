@@ -1,4 +1,4 @@
-CREATE DATABASE chat;
+-- CREATE DATABASE chat;
 
 USE chat;
 
@@ -9,7 +9,7 @@ CREATE TABLE messages (
   createdAt TIMESTAMP  ,
   text VARCHAR(180) ,
   updatedAt TIMESTAMP NULL,
-  PRIMARY KEY (`objectId`)
+  PRIMARY KEY (objectId)
 );
 
 CREATE TABLE texts (

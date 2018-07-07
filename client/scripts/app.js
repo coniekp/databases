@@ -3,7 +3,7 @@ var app = {
 
   //TODO: The current 'handleUsernameClick' function just toggles the class 'friend'
   //to all messages sent by the user
-  server: 'http://127.0.0.1:3000/classes/messages',
+  server: 'http://127.0.0.1:3000/classes',
   username: 'anonymous',
   roomname: 'lobby',
   lastMessageId: 0,
@@ -13,7 +13,9 @@ var app = {
   init: function() {
     // Get username
     app.username = window.location.search.substr(10);
-
+    //MAKE POST/GET REQUEST WITH NEW USERNAME
+    
+    
     // Cache jQuery selectors
     app.$message = $('#message');
     app.$chats = $('#chats');
@@ -26,13 +28,13 @@ var app = {
     app.$roomSelect.on('change', app.handleRoomChange);
 
     // Fetch previous messages
-    app.startSpinner();
-    app.fetch(false);
+    //app.startSpinner();
+    // app.fetch(false);
 
-    // Poll for new messages
-    setInterval(function() {
-      app.fetch(true);
-    }, 3000);
+    // // Poll for new messages
+    // setInterval(function() {
+    //   app.fetch(true);
+    // }, 3000);
   },
 
   send: function(message) {
@@ -40,7 +42,7 @@ var app = {
 
     // POST the message to the server
     $.ajax({
-      url: app.server,
+      url: app.server + '/messages',
       type: 'POST',
       data: JSON.stringify(message),
       contentType: 'application/json',

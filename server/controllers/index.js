@@ -12,7 +12,7 @@ module.exports = {
       collectData(req, function(message) {
       //message.objectId = ++objectIdCounter;  ADD OBJ ID 
       //messages.push(message);      SEND POST REQUEST TO DB 
-        models.messages.post(message);
+        //models.messages.post(message);
         //
         sendResponse(res, {objectId: 0}, 201);
       });

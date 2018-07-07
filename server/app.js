@@ -30,3 +30,21 @@ if (!module.parent) {
   console.log('Listening on', app.get('port'));
 }
 
+
+/*
+var router = {
+  '/classes/messages': messages.requestHandler
+  // ...
+};
+
+var server = http.createServer( function(req, res) {
+  console.log('Serving request type ' + req.method + ' for url ' + req.url);
+
+  var route = router[url.parse(req.url).pathname];
+  if (route) {
+    route(req, res);
+  } else {
+    utils.sendResponse(res, '', 404);
+  }
+});
+*/

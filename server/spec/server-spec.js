@@ -43,12 +43,14 @@ describe('Persistent Node Chat Server', function() {
           message: 'In mercy\'s name, three days is all I need.',
           roomname: 'Hello'
         }
+        
       }, function () {
         // Now if we look in the database, we should find the
         // posted message there.
 
         // TODO: You might have to change this test to get all the data from
         // your message table, since this is schema-dependent.
+        
         var queryString = 'SELECT * FROM messages';
         var queryArgs = [];
 

@@ -28,13 +28,33 @@ var app = {
     app.$roomSelect.on('change', app.handleRoomChange);
 
     // Fetch previous messages
-    //app.startSpinner();
-    // app.fetch(false);
+    app.startSpinner();
+    app.sendUsername(app.username);
+    app.fetch(false);
 
-    // // Poll for new messages
-    // setInterval(function() {
-    //   app.fetch(true);
-    // }, 3000);
+    // Poll for new messages
+    setInterval(function() {
+      app.fetch(true);
+    }, 3000);
+  },
+  sendUsername: function(username) {
+    
+    $.ajax({
+      url: app.server + '/users',
+      type: 'POST',
+      data: JSON.stringify({username: username}),
+      contentType: 'application/json',
+      success: function (data) {
+        // Clear messages input
+        //app.$message.val('');
+
+        // Trigger a fetch to update the messages, pass true to animate
+        app.fetch();
+      },
+      error: function (error) {
+        console.error('chatterbox: Failed to send username', error);
+      }
+    });
   },
 
   send: function(message) {
@@ -61,11 +81,12 @@ var app = {
 
   fetch: function(animate) {
     $.ajax({
-      url: app.server,
+      url: app.server + '/messages',
       type: 'GET',
       data: { order: '-createdAt' },
       success: function(data) {
         // Don't bother if we have nothing to work with
+        
         if (!data.results || !data.results.length) { return; }
 
         // Store messages for caching later
